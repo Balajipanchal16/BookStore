@@ -99,20 +99,29 @@
 					<th>User Name</th>
 					<th>Order Items</th>
 					<th>Approve</th>
-					<th>Reject</th>
 					
+
 				</tr>
 				<d:forEach var="order" items="${orders}">
 					<tr>
 						<td>${order.getOrderId()}</td>
 						<td>${order.getOrderedDate()}</td>
 						<td>${order.getUser().getFullname()}</td>
-						<td><a href="<d:url value='/${book.bookId}' />">Approve</a></td>
-						<td><a href="<d:url value='reject/${book.bookId}' />">Reject</a></td>
 						<td><a href="OrderItemsDetails.jsp">Order Item</a></td>
+						<td>
+						<d:choose>
+							<d:when test="${order.getStatus() ne 'Approved'}">
+								<a
+							href="<d:url value='/approveOrder/${order.getOrderId()} ' />">Approve</a>
+							</d:when>
+							<d:otherwise>
+								<p>Approved</p>
+							</d:otherwise>
+						</d:choose>
+						</td>
+						
+
 					</tr>
-				
-					
 				</d:forEach>
 			</table>
 		</div>

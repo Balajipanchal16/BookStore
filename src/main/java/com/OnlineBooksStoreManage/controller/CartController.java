@@ -36,10 +36,19 @@ public class CartController {
 	@RequestMapping("addToCart/{bookId}/{id}")
 	public String addToCart(@PathVariable long bookId,@PathVariable int id,RedirectAttributes redirectAttributes)
 	{
-		Book book=bookRepo.findById(bookId).orElse(null);
 		AdminUsers user=userRepo.findById(id).orElse(null);
+		if(user.getCart().getItems().stream().anyMatch(item->item.getBook().getBookId() == bookId))
+		{
+			redirectAttributes.addAttribute("user", user);
+			redirectAttributes.addAttribute("cartMessage", "Already added in cart !! ");
+			return "redirect:/products";
+		}
+		
+		Book book=bookRepo.findById(bookId).orElse(null);
+		
 		CartItem cartItem = new CartItem();
 		cartItem.setBook(book);
+		
 		cartItem.setCart(user.getCart());
 		cartItemRepo.save(cartItem);
 	

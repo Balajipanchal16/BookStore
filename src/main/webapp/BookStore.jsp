@@ -23,7 +23,7 @@
 				}
 				#bookslef{
 					background-image: url('/images/libarary.jpg');
-					background-size: contain;
+					background-size: cover;
 					border-radius: 7px 0px 0px 7px;
 					box-shadow: 3px 3px 8px gray;
 					background-color: white;

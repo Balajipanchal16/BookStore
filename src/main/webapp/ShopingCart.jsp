@@ -65,7 +65,7 @@
 }
 </style>
 </head>
-<body>
+<body class="bg-light"> 
 	<nav class="navbar navbar-expand-lg navbar-light bg-white">
 		<a class="navbar-brand" href="#">BookStore</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -123,10 +123,10 @@
 						</div>
 						<div class="imagedata">
 							<h5 class="card-title">Book name: ${book.bookName}</h5>
-							<p class="card-text">Aurther name:${book.aurtherName}</p>
+							<p class="card-text">Author name:${book.aurtherName}</p>
 							<p class="card-text">Price:${book.price}</p>
-							<a href="<d:url value='/${book.bookId}' />"
-								class="btn btn-primary">View Details</a>
+							<%-- <a href="<d:url value='/${book.bookId}' />"
+								class="btn btn-primary">View Details</a> --%>
 						</div>
 
 					</div>

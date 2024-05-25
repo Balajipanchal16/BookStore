@@ -2,10 +2,10 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="d"%>
 <d:set var="ob" value="${user}" />
-<d:set var="totalBook" value="${totalBooks}" />
+<d:set var="totalBook" value="${cartBooks}" />
 <d:set var="totalPrice" value="${totalPrice}" />
 <d:set var="cartId" value="${cartId}" />
-
+<d:set var="cartMessage" value="${cartMessage}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,13 +18,13 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 <style type="text/css">
+* {
+	box-sizing: border-box;
+}
 
-	*{
-		box-sizing: border-box;
-	}
-	body {
-		background-color: whitesmoke;
-	}
+body {
+	background-color: whitesmoke;
+}
 
 .bookImage {
 	width: 150px;
@@ -38,12 +38,13 @@
 	/* border: 1px solid black; */
 	background-color: whitesmoke;
 	box-shadow: 3px 3px 8px gray;
-	
 }
-.indd{
+
+.indd {
 	margin-top: 30px;
 	margin-bottom: 50px;
 }
+
 .footerbody {
 	display: flex;
 	justify-content: space-between;
@@ -57,7 +58,7 @@
 	background-color: navy;
 	color: white;
 	padding: 5px 15px;
-	display:inline-block;
+	display: inline-block;
 	width: 100%;
 	text-decoration: none;
 	border-radius: 7px;
@@ -85,7 +86,8 @@
 .buttonss a button {
 	width: 100%;
 }
-.badge{
+
+.badge {
 	font-size: 10px;
 }
 </style>
@@ -123,19 +125,24 @@
 				<input class="form-control mr-sm-2" type="search"
 					placeholder="Search" aria-label="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				<a href="<d:url  value='cart/${ob.id}'/>" style="margin-left: 20px" 
-						type="button" class="btn btn-primary" >
-							<i class="fa-solid fa-cart-shopping"></i> <sup><span class="badge badge-pill badge-warning mb-n3 ">2</span></sup> 
-					</a>
-					<a href="<d:url  value='user/${ob.id}'/>" style="margin-left: 20px" 
-						type="button" class="btn btn-primary">
-							<i class="fa-solid fa-user"></i>
-					</a>
+				<a href="<d:url  value='cart/${ob.id}'/>" style="margin-left: 20px"
+					type="button" class="btn btn-primary"> <i
+					class="fa-solid fa-cart-shopping"></i> <sup><span
+						class="badge badge-pill badge-warning mb-n3 ">${totalBook}</span></sup>
+				</a> <a href="<d:url  value='user/${ob.id}'/>" style="margin-left: 20px"
+					type="button" class="btn btn-primary"> <i
+					class="fa-solid fa-user"></i>
+				</a>
 			</form>
 
 		</div>
 	</nav>
+	<c:if test="${not empty cartMessage}">
+				<div class="alert alert-warning" id="cartAlertMsg" role="alert">${cartMessage} </div>
+			</c:if>
+	
 	<div class="container">
+	
 		<div class="row m-5">
 			
 			<d:forEach var="book" items="${books}">
@@ -145,24 +152,24 @@
 						<div class="card-body">
 							<input type="hidden" name="bookId" value="${book.bookId}">
 							<img src="<d:url value='image/${book.bookId}' />"
-								class="bookImage"  alt="Example Image" />
+								class="bookImage" alt="Example Image" />
 
 						</div>
-						
+
 						<div class="card-footer info">
 							<div class="footerbody">
 								<p>${book.bookName}</p>
 								<p>${book.price}</p>
-									
+
 							</div>
-							 <div> 
+							<div>
 								<%-- <a href="<d:url   value='viewDatails/${book.bookId}'/>"
 										id="viewbtn">View details</a> --%>
-								 <a href="<d:url  value='addToCart/${book.bookId}/${ob.id}'/>"
-									id="viewbtn">Add to Cart</a> 
-									<%-- <a href="<d:url   value='viewDatails/${book.bookId}'/>"
+								<a href="<d:url  value='addToCart/${book.bookId}/${ob.id}'/>"
+									id="viewbtn">Add to Cart</a>
+								<%-- <a href="<d:url   value='viewDatails/${book.bookId}'/>"
 										id="viewbtn">View details</a> --%>
-							 </div> 
+							</div>
 							<%-- <div class="buttonss">
 								<div style="margin-bottom:20px;">
 									<a href="<d:url   value='viewDatails/${book.bookId}'/>"
@@ -190,6 +197,10 @@
 
 		</div>
 	</div>
+	<script type="text/javascript">
+		var alertMsg=document.getElementById("cartAlertMsg");
+		alertMsg.style.display="none";
+	</script>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>

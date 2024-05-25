@@ -24,17 +24,8 @@ public class OrderItem {
 	@JoinColumn(name="order_id")
 	private Order order;
 	
-	@Column(name="approved")
-	private boolean approved=false;
-
-	public boolean isApproved() {
-		return approved;
-	}
-
-	public void setApproved(boolean approved) {
-		this.approved = approved;
-	}
-
+	
+	
 	public OrderItem(long orderItemId, Book book, Order order) {
 		super();
 		this.orderItemId = orderItemId;

@@ -64,10 +64,12 @@ public class OrderController {
 //		model.addAttribute("books", books);
 		return "PendingOrder";
 	}
-//	@RequestMapping("/")
-//	public String aproveOrder(Model model)
-//	{
-//		
-//	}
-	 
+	
+	@RequestMapping("/approveOrder/{orderId}")
+	 public String approveOrder(@PathVariable long orderId ) {
+				Order order=orderRepo.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
+				order.setStatus("Approved");
+				orderRepo.save(order);
+		return "redirect:/pendingOrders";
+	    }
 }

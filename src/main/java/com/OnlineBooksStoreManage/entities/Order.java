@@ -24,8 +24,15 @@ public class Order {
 		@Id
 		@GeneratedValue(strategy = GenerationType.AUTO)
 		private long orderId;
-		
-		
+		 private String status;
+		 
+		public String getStatus() {
+			return status;
+		}
+
+		public void setStatus(String status) {
+			this.status = status;
+		}
 
 		@DateTimeFormat
 		private Date orderedDate;
@@ -71,8 +78,5 @@ public class Order {
 		public void setOrderedDate(Date orderedDate) {
 			this.orderedDate = orderedDate;
 		}
-
-		
-		
 		
 }
