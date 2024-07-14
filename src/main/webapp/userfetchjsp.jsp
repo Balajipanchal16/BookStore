@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="d" %>
+     <d:set var="user" value="${userdata}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,8 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 </head>
-<body>
+<body class="bg-light">
+	
 		<div class="container p-5">
 		
 			<table class="table">
@@ -23,7 +25,7 @@
 					<th>Address</th>
 					<th>Password</th>
 					<!-- <th>edit</th> -->
-					<th>delete</th>
+					
 				</tr>
 				<d:forEach var="user" items="${fetchusers}">
 				<tr>
@@ -34,7 +36,7 @@
 					<td>${user.address}</td>
 					<td>${user.password}</td>
 				<%-- 	<td><a href="<d:url value='/${user.id}' />" class="btn px-2 bg-success text-white">edit</a></td> --%>
-					<td><a href="<d:url value='delete/${user.id}' />" class="btn px-2 bg-danger text-white">delete</a></td>
+					
 				</tr>
 				</d:forEach>
 			</table>

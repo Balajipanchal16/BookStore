@@ -20,10 +20,9 @@
 .main2 {
 	/* border: 5px solid black; */
 	width: calc(100% - 100px);
-/* 	box-shadow: 3px 3px 8px gray; */
+	/* 	box-shadow: 3px 3px 8px gray; */
 	padding: 30px 30px;
 	margin-top: -20px;
-	
 }
 
 .pricedetails {
@@ -40,24 +39,26 @@
 /* .abcs {
 	
 } */
-
-.maintcont{
-		display:flex;
-		flex-direction: row;
-		 box-shadow: 3px 3px 7px gray; 
-		 margin-bottom: 20px;
+.maintcont {
+	display: flex;
+	flex-direction: row;
+	box-shadow: 3px 3px 7px gray;
+	margin-bottom: 20px;
 }
-.cardsize{
+
+.cardsize {
 	width: 200px;
 	height: 200px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
-.imagedata{
-		padding: 30px 30px;
+
+.imagedata {
+	padding: 30px 30px;
 }
-.bookimg{
+
+.bookimg {
 	width: 150px;
 	height: 150px;
 	object-fit: contain;
@@ -65,7 +66,7 @@
 }
 </style>
 </head>
-<body class="bg-light"> 
+<body class="bg-light">
 	<nav class="navbar navbar-expand-lg navbar-light bg-white">
 		<a class="navbar-brand" href="#">BookStore</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -77,7 +78,7 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="#">Home
+				<li class="nav-item active"><a class="nav-link" href="User.jsp">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
@@ -94,15 +95,7 @@
 
 				</li>
 			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search"
-					placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				<a href="BookStore.jsp" style="margin-left: 20px"><button
-						type="button" class="btn btn-primary">
-						<i class="fa-solid fa-right-to-bracket" style="margin-right: 5px"></i>Login
-					</button></a>
-			</form>
+		
 
 
 		</div>
@@ -116,8 +109,9 @@
 				<d:forEach var="book" items="${books}">
 					<div class="maintcont">
 						<div class="card cardsize">
-						<input type="hidden" name="bookId" value="${book.bookId}">
-						<img src="<d:url value='/image/${book.bookId}' />" class="rounded float-left bookimg" alt="...">
+							<input type="hidden" name="bookId" value="${book.bookId}">
+							<img src="<d:url value='/image/${book.bookId}' />"
+								class="rounded float-left bookimg" alt="...">
 							<%-- <img src="<d:url value='image/${book.bookId}' />"
 								class="card-img-top" alt="Example Image" /> --%>
 						</div>
@@ -125,8 +119,8 @@
 							<h5 class="card-title">Book name: ${book.bookName}</h5>
 							<p class="card-text">Author name:${book.aurtherName}</p>
 							<p class="card-text">Price:${book.price}</p>
-							<%-- <a href="<d:url value='/${book.bookId}' />"
-								class="btn btn-primary">View Details</a> --%>
+							  <a href="<d:url value='/remove/${book.bookId}/${cartId}' />"
+								class="btn btn-primary">remove</a>   
 						</div>
 
 					</div>
@@ -141,12 +135,11 @@
 					<h5 class="card-title">Details</h5>
 					<p class="card-text">Total Quantity: ${totalBooks}</p>
 					<p class="card-text">Total : ${totalPrice}</p>
-				<a href="<d:url value='/order/${cartId}' />"><button
-						class="btn bg-primary text-white">Buy Now</button></a>
+					<a href="<d:url value='/order/${cartId}' />"><button
+							class="btn bg-primary text-white">Buy Now</button></a>
 				</div>
 			</div>
-			
-	</div>
+		</div>
 
 
 
@@ -155,16 +148,16 @@
 
 
 
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+			integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+			crossorigin="anonymous"></script>
 </body>
 </html>

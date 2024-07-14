@@ -76,6 +76,7 @@ body {
 	height: 200px;
 	/* border: 1px solid black;  */
 	box-sizing: border-box;
+	/* margin-bottom: 30px; */
 }
 
 .buttonss {
@@ -107,44 +108,32 @@ body {
 				<li class="nav-item active"><a class="nav-link" href="#">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> Dropdown </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Action</a> <a
-							class="dropdown-item" href="#">Another action</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Something else here</a>
-					</div></li>
-
-				</li>
+				<li class="nav-item"><a class="nav-link"
+					href="/userBooks/${ob.id}">MyBooks</a></li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search"
-					placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
 				<a href="<d:url  value='cart/${ob.id}'/>" style="margin-left: 20px"
 					type="button" class="btn btn-primary"> <i
 					class="fa-solid fa-cart-shopping"></i> <sup><span
 						class="badge badge-pill badge-warning mb-n3 ">${totalBook}</span></sup>
-				</a> <a href="<d:url  value='user/${ob.id}'/>" style="margin-left: 20px"
-					type="button" class="btn btn-primary"> <i
-					class="fa-solid fa-user"></i>
+				</a> <a href="<d:url  value='/userProfile/${ob.id}'/>"
+					style="margin-left: 20px" type="button" class="btn btn-primary">
+					<i class="fa-solid fa-user"></i>
 				</a>
 			</form>
 
 		</div>
 	</nav>
 	<c:if test="${not empty cartMessage}">
-				<div class="alert alert-warning" id="cartAlertMsg" role="alert">${cartMessage} </div>
-			</c:if>
-	
+		<div class="alert alert-warning" id="cartAlertMsg" role="alert">${cartMessage}
+		</div>
+	</c:if>
+
 	<div class="container">
-	
+
 		<div class="row m-5">
-			
+
 			<d:forEach var="book" items="${books}">
 				<div class="col-md-3 indd">
 
@@ -165,8 +154,18 @@ body {
 							<div>
 								<%-- <a href="<d:url   value='viewDatails/${book.bookId}'/>"
 										id="viewbtn">View details</a> --%>
+
 								<a href="<d:url  value='addToCart/${book.bookId}/${ob.id}'/>"
 									id="viewbtn">Add to Cart</a>
+
+								<%--  <button id="toggleButton">Toggle IFrame</button> 
+								 <iframe id="myIframe" src="/pdf/${book.bookId}"  frameborder="0" scrolling="no" allowfullscreen></iframe> --%>
+								<%-- 	<a href="<d:url  value='/pdf/${book.bookId}'/>"
+									id="viewbtn" target="_blank">View book</a>  --%>
+								<%-- <c:url var="viewUrl" value="/viewDocument.jsp" />
+								<a href="<c:url value="/pdf/${bookId}"/>"
+									target="_blank">View Document</a> --%>
+
 								<%-- <a href="<d:url   value='viewDatails/${book.bookId}'/>"
 										id="viewbtn">View details</a> --%>
 							</div>
@@ -197,10 +196,27 @@ body {
 
 		</div>
 	</div>
-	<script type="text/javascript">
+	<!-- <script>
+    // Get references to the button and iframe elements
+    var toggleButton = document.getElementById('toggleButton');
+    var myIframe = document.getElementById('myIframe');
+
+    // Add a click event listener to the button
+    toggleButton.addEventListener('click', function() {
+        // Toggle the visibility of the iframe
+        if (myIframe.style.display === 'none') {
+            myIframe.style.display = 'block';
+            // Set the iframe src when it becomes visible (if needed)
+            myIframe.src = 'viewDocument.jsp'; // Replace with your URL
+        } else {
+            myIframe.style.display = 'none';
+        }
+    });
+</script> -->
+	<!-- <script type="text/javascript">
 		var alertMsg=document.getElementById("cartAlertMsg");
 		alertMsg.style.display="none";
-	</script>
+	</script> -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 		crossorigin="anonymous"></script>

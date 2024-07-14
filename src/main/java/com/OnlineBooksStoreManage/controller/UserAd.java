@@ -13,15 +13,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.OnlineBooksStoreManage.entities.AdminUsers;
 import com.OnlineBooksStoreManage.entities.Book;
 import com.OnlineBooksStoreManage.entities.Cart;
 import com.OnlineBooksStoreManage.entities.CartItem;
+import com.OnlineBooksStoreManage.entities.Order;
+import com.OnlineBooksStoreManage.entities.OrderItem;
 import com.OnlineBooksStoreManage.repositry.Addbooksrepo;
 import com.OnlineBooksStoreManage.repositry.CartItemRepo;
 import com.OnlineBooksStoreManage.repositry.CartRepo;
+import com.OnlineBooksStoreManage.repositry.OrderRepo;
 import com.OnlineBooksStoreManage.repositry.UserAdminrepo;
 
 
@@ -35,9 +39,14 @@ public class UserAd {
 	@Autowired
 	private CartRepo cartRepo;
 	
+	@Autowired
+	private OrderRepo orderRepo;
 	
 	@Autowired
 	private CartItemRepo cartItemRepo;
+	
+//	@Autowired
+//	private OrderItem orderitemRepo;
 	
 	@GetMapping("/")
 	public String home()
@@ -65,12 +74,34 @@ public class UserAd {
 		m.addAttribute("fetchusers", aa);
 		return "userfetchjsp";
 	}
-	@RequestMapping("user/{id}")
-	public String getOneUser(@PathVariable int id,Model m)
+	@RequestMapping("/userProfile/{id}")
+	public String getOneUser(@PathVariable("id") int id,Model m)
 	{
 		AdminUsers user=urepo.findById(id).orElse(null);
 		m.addAttribute("user", user);
-		return "editUserData";
+		return "getUserData";
+	}
+	@RequestMapping("/ViewDetailsUser/{id}")
+	public String getUserDetils(@PathVariable int id,Model model)
+	{
+		AdminUsers user=urepo.findById(id).orElse(null);
+		model.addAttribute("getUserDetails", user);
+		return "editUserDetils";
+	}
+	@RequestMapping("/editUser/{userId}")
+	public String editUserDetails(@PathVariable("userId") int userId,@ModelAttribute AdminUsers user,RedirectAttributes redirectAttributes)
+	{
+		AdminUsers userDetils=urepo.findById(userId).orElse(null);
+		if(userDetils!=null)
+		{
+			userDetils.setFullname(user.getFullname());
+			userDetils.setEmail(user.getEmail());
+			userDetils.setPhoneno(user.getPhoneno());
+			userDetils.setAddress(user.getAddress());
+			userDetils.setPassword(user.getPassword());
+			urepo.save(userDetils);
+		}
+		return "redirect:/userProfile/{userId}";
 	}
 	@RequestMapping("/")
 	public String requestMethodName() {
@@ -102,7 +133,7 @@ public class UserAd {
 	public String getProducts(Model model, @RequestParam("user") AdminUsers obb,@RequestParam("cartMessage") Optional<String> cartMessage) {
 		List<Book> books=booksrepo.findAll();
 		System.out.println(books);
-		/* AdminUsers custmor=urepo.findById(user.ge).orElse(null); */
+//		 AdminUsers custmor=urepo.findById().orElse(null); 
 		Cart cart = obb.getCart();
 		List<CartItem> cartItemList = cartItemRepo.getAllByCart(cart);
 		List<Book> booksitem=(List<Book>) cartItemList.stream().map(CartItem::getBook).collect(Collectors.toList());
@@ -116,6 +147,25 @@ public class UserAd {
 		}
 		
 		return "User";
+	}
+	@RequestMapping("/userBooks/{userId}")
+	public String getUserBooks(@PathVariable("userId") String id,Model model)
+	{
+		int userid=Integer.parseInt(id);
+		AdminUsers user=urepo.findById(userid).orElse(null); 
+		List<Order> orders=user.getOrder();
+		List<Order> approvedOrders = orders.stream().filter(order-> order.getStatus() != null && order.getStatus().equals("Approved") ).collect(Collectors.toList());
+		List<OrderItem> orderItems=approvedOrders.stream().flatMap(order->order.getOrderItems().stream()).collect(Collectors.toList());
+		List<Book> books=orderItems.stream().map(ordertItem->ordertItem.getBook()).collect(Collectors.toList());
+		
+//		Book book=orderitemRepo.getBook();
+//		List<List<OrderItem>> orderItems1 = orders.stream().map(Order::getOrderItems).collect(Collectors.toList());
+		
+//		List<Book> books=(List<Books>) orderItems.stream().map(OrderItem::getBook).collect(Collectors.toList());
+		 model.addAttribute("purchasedBooks", books);
+		 model.addAttribute("userdata", user);
+		return "MyBooks";
+		
 	}
 	
 }

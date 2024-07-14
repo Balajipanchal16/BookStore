@@ -1,5 +1,6 @@
 package com.OnlineBooksStoreManage.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,11 +14,11 @@ public class CartItem {
 		@GeneratedValue(strategy = GenerationType.AUTO)
 		private long cartItemId;
 		
-		@ManyToOne
+		@ManyToOne(cascade = CascadeType.PERSIST)
 		@JoinColumn(name="cart_id")
 		private Cart cart;
 		
-		@ManyToOne
+		@ManyToOne(cascade = CascadeType.PERSIST)
 		@JoinColumn(name="book_id")
 		private Book book;
 

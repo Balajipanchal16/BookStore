@@ -31,7 +31,7 @@ public class OrderController {
 
 	@Autowired
 	private OrderItemRepo orderItemRepo;
-
+	
 	@RequestMapping("/order/{cartId}")
 	public String orderBooks(@PathVariable String cartId,RedirectAttributes redirectAttributes) {
 		Cart cart = cartRepo.findById(Long.parseLong(cartId)).orElse(null);
@@ -40,7 +40,7 @@ public class OrderController {
 		order.setOrderedDate(new Date());
 		order.setUser(cart.getUser());
 		Order savedOrder = orderRepo.save(order);
-
+		
 		books.stream().forEach(book -> {
 			OrderItem orderItem = new OrderItem();
 			orderItem.setBook(book);
@@ -71,5 +71,6 @@ public class OrderController {
 				order.setStatus("Approved");
 				orderRepo.save(order);
 		return "redirect:/pendingOrders";
+		
 	    }
 }

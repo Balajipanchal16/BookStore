@@ -1,13 +1,21 @@
 package com.OnlineBooksStoreManage.controller;
 
 
+import org.springframework.http.MediaType;
+import java.io.File;
 import java.io.IOException;
+
+/*import java.net.http.HttpHeaders;*/
+
+import org.springframework.http.HttpHeaders;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,15 +29,17 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.OnlineBooksStoreManage.entities.Book;
+import com.OnlineBooksStoreManage.entities.Order;
 import com.OnlineBooksStoreManage.repositry.Addbooksrepo;
+import com.OnlineBooksStoreManage.repositry.OrderRepo;
 import com.OnlineBooksStoreManage.utils.Utility;
 
 @Controller
 public class AddBooks {
 	@Autowired
 	private Addbooksrepo adbk;
-	
-	
+	@Autowired
+	private OrderRepo orderRepo;
 	
 	/*
 	 * @Autowired private UserAdminrepo objj;
@@ -56,29 +66,7 @@ public class AddBooks {
 	
 	
 	
-	
-//	@GetMapping("/show/{fileName}")
-//    public void showFile(@PathVariable("fileName") String fileName, HttpServletResponse response) {
-//        try {
-//            File file = new File(UPLOAD_DIR + fileName);
-//            if (file.exists()) {
-//                response.setContentType(Files.probeContentType(file.toPath()));
-//                FileInputStream fis = new FileInputStream(file);
-//                OutputStream out = response.getOutputStream();
-//                byte[] buffer = new byte[1024];
-//                int len;
-//                while ((len = fis.read(buffer)) != -1) {
-//                    out.write(buffer, 0, len);
-//                }
-//                fis.close();
-//            } else {
-//                response.sendError(HttpServletResponse.SC_NOT_FOUND);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-	
+
 	
 	@RequestMapping("/datafetchbook")
 	public String fetch(Model m)
@@ -142,5 +130,24 @@ public class AddBooks {
         // Read the image file into a byte array
         return Files.readAllBytes(imagePath);
     }
-	
+	 @GetMapping("/pdf/{bookId}")
+	    public ResponseEntity<FileSystemResource> getPdf(@PathVariable("bookId") String bookId){
+		 Long id = Long.parseLong(bookId);
+		 Book book = adbk.findByBookId(id).orElseThrow(() -> new RuntimeException("File not found"));
+
+			
+	        File file = new File(book.getPdfUrl());
+	        
+	     
+			/*
+			 * if (!file.exists()) { return
+			 * ResponseEntity.status(404).body("File not found on the server"); }
+			 */
+	        FileSystemResource resource = new FileSystemResource(file);
+
+	        return ResponseEntity.ok()
+	                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + file.getName() + "\"")
+	                .contentType(MediaType.APPLICATION_PDF)
+	                .body(resource);
+	    }
 }

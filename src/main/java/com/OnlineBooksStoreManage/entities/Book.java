@@ -26,6 +26,15 @@ public class Book {
 	@OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
 	private List<CartItem> cartitem = new ArrayList<>();
 	
+	public List<CartItem> getCartitem() {
+		return cartitem;
+	}
+
+
+	public void setCartitem(List<CartItem> cartitem) {
+		this.cartitem = cartitem;
+	}
+
 	@OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
 	private List<OrderItem> orderItem;
 	

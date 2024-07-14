@@ -61,11 +61,9 @@
 				</li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search"
-					placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				<a href="BookStore.jsp" style="margin-left: 20px"><button
-						type="button" class="btn btn-primary"><i class="fa-solid fa-right-to-bracket" style="margin-right: 5px"></i>Login</button></a>
+				
+				<a href="admin1.jsp" style="margin-left: 20px"><button
+						type="button" class="btn btn-primary"><i class="fa-solid fa-right-to-bracket" style="margin-right: 5px"></i>Sign Up</button></a>
 			</form>
 
 

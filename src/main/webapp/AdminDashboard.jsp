@@ -32,7 +32,7 @@
 	}
 .dashboard{
 	width: 500px;
-	height: 600px;
+	height: 500px;
 	padding: 20px;
 	border-radius: 10px;
 	box-shadow: 3px 3px 8px gray;
@@ -88,30 +88,13 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="#">Home
+				<li class="nav-item active"><a class="nav-link" href="BookStore.jsp">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> Dropdown </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Action</a> <a
-							class="dropdown-item" href="#">Another action</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Something else here</a>
-					</div></li>
-
-				</li>
+				
+			
 			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search"
-					placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				<a href="BookStore.jsp" style="margin-left: 20px"><button
-						type="button" class="btn btn-primary"><i class="fa-solid fa-right-to-bracket" style="margin-right: 5px"></i>Login</button></a>
-			</form>
+		
 
 
 		</div>
@@ -144,12 +127,6 @@
 				</div>
 				<div class="card p-2 m-3 ">
 					<div class="card-body">
-						<a href="Manage.jsp" class="bts"><i class="fa-solid fa-chart-simple"></i> Order History</a>
-					</div>
-						
-				</div>
-				<div class="card p-2 m-3 ">
-					<div class="card-body">
 					<form action="pendingOrders">
 							<button type="submit" id="btnss"><i class="fa-solid fa-hourglass-half"></i> Pending Order</button>
 					</form>
@@ -157,6 +134,13 @@
 					
 						<%-- <a href="<d:url value='/pendingOrders' />" class="bts"><i class="fa-solid fa-hourglass-half"></i> Pending Order</a> --%>
 					</div>
+				<!-- <div class="card p-2 m-3 ">
+					<div class="card-body">
+						<a href="Manage.jsp" class="bts"><i class="fa-solid fa-chart-simple"></i> Order History</a>
+					</div> -->
+						
+				</div>
+				
 						
 				</div>
 			</div>				
