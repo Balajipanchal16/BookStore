@@ -88,6 +88,7 @@ public class CartController {
 		model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("cartId", cart.getCartId());
 		model.addAttribute("cartItem", cartItemList);
+		model.addAttribute("users1", user);
 		return "ShopingCart";
 	}
 

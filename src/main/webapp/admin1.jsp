@@ -43,7 +43,31 @@
 		}
 	</style>
 </head>
-<body>
+<body class="bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<a class="navbar-brand" href="BookStore.jsp">Open<span style="color:orange">Books</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+
+
+
+				</li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+
+				<a href="BookStore.jsp" style="margin-left: 20px"><button type="button" class="btn btn-outline-warning mr-3">Login</button></a>
+			</form>
+
+
+		</div>
+	</nav>
 	
 	<div class="maintab">
 		<div class="formtab">

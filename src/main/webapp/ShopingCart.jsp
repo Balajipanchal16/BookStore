@@ -4,7 +4,7 @@
 <d:set var="totalBooks" value="${totalBooks}" />
 <d:set var="totalPrice" value="${totalPrice}" />
 <d:set var="cartId" value="${cartId}" />
-<d:set var="ob" value="${user}" />
+<d:set var="users" value="${users1}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +68,7 @@
 </head>
 <body class="bg-light">
 	<nav class="navbar navbar-expand-lg navbar-light bg-white">
-		<a class="navbar-brand" href="#">BookStore</a>
+		<a class="navbar-brand" href="#">Open<span style="color:orange">Books</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -78,26 +78,13 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="User.jsp">Home
+		<!-- 	<form action="products">
+				<button type="submit">Home</button>
+			</form> -->
+				<li class="nav-item active"><a class="nav-link" href="<d:url  value='/products?user=${users.getId()}'/>">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> Dropdown </a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Action</a> <a
-							class="dropdown-item" href="#">Another action</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">Something else here</a>
-					</div></li>
-
-				</li>
 			</ul>
-		
-
-
 		</div>
 	</nav>
 	<!--  -->

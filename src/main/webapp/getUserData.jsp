@@ -49,7 +49,7 @@
 	crossorigin="anonymous">
 <body>
 		<nav class="navbar navbar-expand-lg navbar-light bg-white">
-		<a class="navbar-brand" href="#">BookStore</a>
+		<a class="navbar-brand" href="#">Open<span style="color:orange">Books</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -65,8 +65,6 @@
 				<li class="nav-item"><a class="nav-link"
 					href="/userBooks/${ob.id}">MyBooks</a></li>
 			</ul>
-			
-
 		</div>
 	</nav>
 	<div class="maindiv">

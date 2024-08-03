@@ -52,6 +52,7 @@ public class OrderController {
 		cartRepo.save(cart);
 
 		redirectAttributes.addAttribute("user", cart.getUser());
+		 redirectAttributes.addFlashAttribute("orderMessage", "Order in process!");
 		return "redirect:/products";
 	}
 	@RequestMapping("/pendingOrders")

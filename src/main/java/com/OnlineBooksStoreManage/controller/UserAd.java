@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,7 +56,7 @@ public class UserAd {
 		return "BookStore";
 	}
 	@GetMapping("/UserAd")
-	public String useradpage(@ModelAttribute AdminUsers ob)
+	public String useradpage(@ModelAttribute AdminUsers ob,Model model)
 	{
 		System.out.println(ob);
 		Cart cart = null;
@@ -65,7 +67,7 @@ public class UserAd {
 		ob.setCart(cart);
 		cartRepo.save(cart);
 //		urepo.save(ob);
-		return "redirect:/";
+		return "redirect:/?success=true";
 	}
 	@RequestMapping("/fetchusers")
 	public String fetchUser(Model m)
@@ -168,4 +170,10 @@ public class UserAd {
 		
 	}
 	
+	   @PostMapping("/logout")
+	    public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
+	        session.invalidate(); // Invalidate the session
+	        redirectAttributes.addFlashAttribute("logoutMessage", "You have been logged out successfully.");
+	        return "redirect:/"; // Redirect to the login page
+	    }
 }

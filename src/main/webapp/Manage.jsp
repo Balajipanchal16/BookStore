@@ -47,11 +47,37 @@
 			
 	</style>
 </head>
-<body>
-	<div class="maintab">
-		<div class="formtab">
+<body class="bg-light">
+		<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<a class="navbar-brand" href="#">Open<span style="color:orange">Books</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link"
+					href="BookStore.jsp">Home <span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item "><a class="nav-link"
+					href="AdminDashboard.jsp">AdminDashboard
+				</a></li>
+			
+			</ul>
+
+
+
+		</div>
+	</nav>
+ <div class="container">
+ 		<div class="row justify-content-center rounded">
+ 			<div class="col-md-6">
+ 				
+				<form action="addbook" method="post" id="mform" enctype="multipart/form-data" class="bg-white p-3 mt-3 shadow-lg p-3 mb-5 bg-secondary rounded">
 				<h3 style="color:navy"> Add Book </h2>
-				<form action="addbook" method="post" id="mform" enctype="multipart/form-data">
 				<label>Book Name</label>
 				<input type="text" name="bookName" class="inputs bg-light" placeholder="Enter Book name...">
 				
@@ -72,17 +98,16 @@
 				
 				<button type="submit" class="mt-3 btns">Submit</button>
 			</form>	
+ 			</div>
+ 		</div>
+ 		
+ </div>
+	<%-- <div class="maintab">
+		<div class="formtab">
+				
 		</div>
-	</div>
-	<div class="mains">
-		
-		<div class="forms p-4">
-			
-			
-		</div>
-		
+	</div> --%>
 	
-	</div>
 	
 	
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

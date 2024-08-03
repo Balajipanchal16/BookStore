@@ -12,40 +12,48 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-<style type="text/css">
-.maincontainer {
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	/* border: 2px solid black; */
-}
 
-.tablecont {
-	background-color: white;
-/* 	width: 800px; */
-	/* padding: 40px 40px; */
-	box-shadow: 3px 4px 6px gray;
-}
-
-.table {
-	width: 500px !important;
-	height: 500px !important;
-	font-size: 13px;
-}
-/* #btns{
-	background-color: 
-} */
-</style>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
+	<style type="text/css">
+		.rr{
+			font-size: 13px;
+				
+		}
+		
+	</style>
 </head>
 <body class="bg-light">
-	<div class="maincontainer">
-		<div class="tablecont">
-			<table class="table">
+		<nav class="navbar navbar-expand-lg navbar-light bg-white">
+		<a class="navbar-brand" href="#">Open<span style="color:orange">Books</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active"><a class="nav-link"
+					href="BookStore.jsp">Home <span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item "><a class="nav-link"
+					href="AdminDashboard.jsp">AdminDashboard
+				</a></li>
+			
+			</ul>
+
+
+
+		</div>
+	</nav>
+	<div class="container-fluid">
+			<div class="row  mt-5 ">
+				<div class="col-12">
+					<table class="table bg-white rr">
 				<tr class="bg-dark text-white">
 					<th>BookId</th>
 					<th>BookName</th>
@@ -72,8 +80,10 @@
 					</tr>
 				</d:forEach>
 			</table>
-		</div>
+				</div>
+			</div>
 	</div>
+
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

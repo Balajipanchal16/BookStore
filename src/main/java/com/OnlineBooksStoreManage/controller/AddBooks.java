@@ -47,7 +47,7 @@ public class AddBooks {
 	
 	
 	@PostMapping("/addbook")
-	public String addBooks(@ModelAttribute Book bk, @RequestParam("bookImage") MultipartFile imgFile,@RequestParam("bookPdf") MultipartFile pdfFile, RedirectAttributes redirectAttributes)
+	public String addBooks(@ModelAttribute Book bk, @RequestParam("bookImage") MultipartFile imgFile,@RequestParam("bookPdf") MultipartFile pdfFile, RedirectAttributes redirectAttributes,Model model)
 	{
 		String imgUrl =  Utility.uploadFile(imgFile);
 		String pdfUrl =  Utility.uploadFile(pdfFile);
@@ -60,8 +60,13 @@ public class AddBooks {
 		bk.setPdfUrl(pdfUrl);
 		
 		System.out.println(bk);
-		adbk.save(bk);
-		return "AdminPages";
+		  try {
+		        adbk.save(bk);
+		        model.addAttribute("message", "Book added successfully!");
+		    } catch (Exception e) {
+		        model.addAttribute("error", "Something went wrong. Please try again.");
+		    }
+		return "AdminDashboard";
 	}
 	
 	

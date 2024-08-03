@@ -17,6 +17,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
+
 <style type="text/css">
 * {
 	box-sizing: border-box;
@@ -95,7 +96,7 @@ body {
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-white">
-		<a class="navbar-brand" href="#">BookStore</a>
+		<a class="navbar-brand" href="#">Open<span style="color:orange">Books </span></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -105,9 +106,9 @@ body {
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="#">Home
+				<!-- <li class="nav-item active"><a class="nav-link" href="#">Home
 						<span class="sr-only">(current)</span>
-				</a></li>
+				</a></li> -->
 				<li class="nav-item"><a class="nav-link"
 					href="/userBooks/${ob.id}">MyBooks</a></li>
 			</ul>
@@ -122,11 +123,17 @@ body {
 					<i class="fa-solid fa-user"></i>
 				</a>
 			</form>
+			<form action="<d:url value='/logout'/>" method="post"
+				class="form-inline my-2 my-lg-0">
+				<button type="submit" class="btn btn-outline-danger m-3 my-sm-0">Logout</button>
+			</form>
 
 		</div>
 	</nav>
 	<c:if test="${not empty cartMessage}">
 		<div class="alert alert-warning" id="cartAlertMsg" role="alert">${cartMessage}
+		</div>
+
 		</div>
 	</c:if>
 
@@ -196,6 +203,19 @@ body {
 
 		</div>
 	</div>
+	<script type="text/javascript">
+		window.onload = function() {
+			var orderMessage = '${orderMessage}';
+			if (orderMessage) {
+				alert(orderMessage);
+			}
+			
+			var logoutMessage = '${logoutMessage}';
+	        if (logoutMessage) {
+	            alert(logoutMessage);
+	        }
+		}
+	</script>
 	<!-- <script>
     // Get references to the button and iframe elements
     var toggleButton = document.getElementById('toggleButton');
