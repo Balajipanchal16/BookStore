@@ -1,4 +1,4 @@
-#OnlineBookStore Management System
+<strong>OnlineBookStore Management System</strong>
 <ul>
   <li>Developed an Online Bookstore Management System using Spring MVC, Hibernate, JPA, and Bootstrap.</li>
   <li>Enabled admins to manage book inventory and sales approval.</li>
